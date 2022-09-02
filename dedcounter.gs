@@ -10,7 +10,7 @@ public def OnPlayerChat(playerid, text)
         local ded = 0
         for plr; plr < 65; plr++
             if IsPlayerConnected(plr) == 1 then
-                if GetPlayerRole(plr) == 0 then
+                if GetPlayerType(plr) == 0 then
                     ded++
                 end
             end
