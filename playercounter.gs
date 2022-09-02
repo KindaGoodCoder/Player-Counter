@@ -22,7 +22,7 @@ found[2] = TYPE_JANITOR
 found[3] = TYPE_WORKER
 found[4] = TYPE_SCIENTIST
 
-specs = [65,SE_INT]
+specs = [64,SE_INT]
 
 public def OnPlayerGetNewRole()
     local scp = 0
@@ -30,12 +30,23 @@ public def OnPlayerGetNewRole()
     local chaos = 0
     for x; x < 65;x++
         if IsPlayerConnected(x) then
+            local text = CreatePlayerText(plr, "You are in decontamination gas, evacuate LCZ NOW!",60, 30, 1530000, "DS-DIGITAL.ttf", 50))
+            print(text)
             local role = GetPlayerType(x)
             if role == 0 then
+                local debounce = True
                 for y; y < 65;y++
-                    if specs[y] == 0 then
-                        specs[y] == x
+                    if specs[y] == role then
+                        debounce = False
                         break
+                    end
+                end
+                if debounce == True then
+                    for y; y < 65;y++
+                        if specs[y] == role then
+                            specs[y] = x
+                            break
+                        end
                     end
                 end
             end
