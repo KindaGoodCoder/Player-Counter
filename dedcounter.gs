@@ -3,48 +3,20 @@
 
 global CurrentPlayerTypes   = [MAX_PLAYERS, SE_INT]
 
-global j = 0
 global previousDeadCount = -1
 
-public def OnPlayerChat(playerid, text)
-    if instr (text, "/dead", 1)
-    SendMessage(playerid, "Total Players Dead: " + j)
-    return 0
-end
-
-//Detects Players
-public def OnPlayerGetNewRole(playerid, oldtype, newtype)
-    CurrentPlayerTypes[playerid] = int(newtype)
-    if CurrentPlayerTypes[playerid] = 0 then
-        j++
-    else 
-        previousDeadCount = j
+public def OnPlayerChat(playerid, text)    
+    if instr (text, "/dead", 1) then
+        local ded = 0
+        for plr; plr < 65; plr++
+            if IsPlayerConnected(plr) == 1 then
+                if GetPlayerRole(plr) == 0 then
+                    ded++
+                end
+            end
+        end
+        SendMessage(playerid, ded + " people are ded")
+        return 0
     end
-end
-
-public def OnPlayerRequestNewRole(playerid, playertype)
-    CurrentPlayerTypes[playerid] = int(playertype) 
-    if CurrentPlayerTypes[playerid] = 0 then
-        j++
-    else 
-        previousDeadCount = j
-    end
-end
-
-public def OnPlayerEscape(playerid, currenttype, previoustype)
-    CurrentPlayerTypes[playerid] = int(currenttype)
-    if CurrentPlayerTypes[playerid] = 0 then
-        j++
-    else 
-        previousDeadCount = j
-    end
-end
-
-public def OnPlayerEscapeButDead(playerid, currenttype, previoustype)
-  CurrentPlayerTypes[playerid] = int(currenttype)
-  if CurrentPlayerTypes[playerid] = 0 then
-        j++
-    else 
-        previousDeadCount = j
-    end
+    return 1
 end

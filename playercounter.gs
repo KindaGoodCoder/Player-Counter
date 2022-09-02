@@ -24,7 +24,7 @@ found[4] = TYPE_SCIENTIST
 
 specs = [65,SE_INT]
 
-public def OnPlayerRequestNewRole()
+public def OnPlayerGetNewRole()
     for x; x < 65;x++
         if IsPlayerConnected(x) then
             local role = GetPlayerType(x)
