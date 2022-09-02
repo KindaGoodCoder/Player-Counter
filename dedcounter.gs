@@ -1,10 +1,6 @@
 #include "includes\multiplayer_core.inc"
 #include "str_util.gs"
 
-global CurrentPlayerTypes   = [MAX_PLAYERS, SE_INT]
-
-global previousDeadCount = -1
-
 public def OnPlayerChat(playerid, text)    
     if instr (text, "/dead", 1) then
         local ded = 0

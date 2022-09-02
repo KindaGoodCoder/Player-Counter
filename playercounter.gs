@@ -25,6 +25,9 @@ found[4] = TYPE_SCIENTIST
 specs = [65,SE_INT]
 
 public def OnPlayerGetNewRole()
+    local scp = 0
+    local secure = 0
+    local chaos = 0
     for x; x < 65;x++
         if IsPlayerConnected(x) then
             local role = GetPlayerType(x)
@@ -34,6 +37,20 @@ public def OnPlayerGetNewRole()
                         specs[y] == x
                         break
                     end
+                end
+            end
+            for y; y <= len scps; y++
+                if scps[y] == role then
+                    scp++
+                    break
+                end
+                if found[y] == role then
+                    secure++
+                    break
+                end
+                if cd[y] == role then
+                    chaos++
+                    break
                 end
             end
         end
