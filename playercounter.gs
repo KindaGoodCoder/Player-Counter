@@ -52,17 +52,20 @@ public def OnPlayerGetNewRole()
                 print("hurry")
                 for y; y <= 9; y++
                     bug = scp[y]
+                    print(bug)
                     if scps[y] == role then
                         scp++
                         break
                     end
                     bug = found[y]
+                    print(bug)
                     if found[y] == role then
                         print("lego")
                         secure++
                         break
                     end
                     bug = cd[y]
+                    print(bug)
                     if cd[y] == role then
                         chaos++
                         break
