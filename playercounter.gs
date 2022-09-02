@@ -1,69 +1,94 @@
-#include "includes\multiplayer_core.inc" 
-scps = [9,SE_INT]
-cd = [2,SE_INT]
-found = [5,SE_INT]
-//SCPs
-scps[1] = TYPE_173
-scps[2] = TYPE_049
-scps[3] = TYPE_939
-scps[4] = TYPE_106
-scps[5] = TYPE_096
-scps[6] = TYPE_035
-scps[7] = TYPE_860
-scps[8] = TYPE_ZOMBIE
-scps[0] = TYPE_966 //forgot it started at 0
-//Class D Team
-cd[1] = TYPE_CLASSD
-cd[0] = TYPE_CHAOS
-//Security
-found[0] = TYPE_GUARD
-found[1] = TYPE_NTF
-found[2] = TYPE_JANITOR
-found[3] = TYPE_WORKER
-found[4] = TYPE_SCIENTIST
+#include "includes\multiplayer_core.inc"
 
-specs = [64,SE_INT]
+global scps = [9,SE_INT]
+global cd = [2,SE_INT]
+global found = [5,SE_INT]
+//SCPs
+scps[1] = 5
+scps[2] = 6
+scps[3] = 10
+scps[4] = 11
+scps[5] = 12
+scps[6] = 13
+scps[7] = 14
+scps[8] = 15
+scps[0] = 16 //forgot it started at 0
+
+//Class D Team
+cd[1] = 3
+cd[0] = 7
+//Security
+found[0] = 2
+found[1] = 1
+found[2] = 8
+found[3] = 9
+found[4] = 4
+
+specs = [64, SE_INT]
+
+global scptext,foundtext,cdtext = 0
 
 public def OnPlayerGetNewRole()
+    print(scps)
     local scp = 0
     local secure = 0
     local chaos = 0
-    for x; x < 65;x++
-        if IsPlayerConnected(x) then
-            local text = CreatePlayerText(plr, "You are in decontamination gas, evacuate LCZ NOW!",60, 30, 1530000, "DS-DIGITAL.ttf", 50))
-            print(text)
-            local role = GetPlayerType(x)
+    print("lego")
+    local bug //a variable to work around a bug
+    local role 
+    for x; x < 65; x++
+        if IsPlayerConnected(x) == 1 then
+            role = GetPlayerType(x)
             if role == 0 then
-                local debounce = True
-                for y; y < 65;y++
-                    if specs[y] == role then
-                        debounce = False
+                for y; y < 65; y++
+                    bug = specs[y]
+                    print(bug)
+                    if bug == 0 then
+                        specs[y] = x
                         break
                     end
                 end
-                if debounce == True then
-                    for y; y < 65;y++
-                        if specs[y] == role then
-                            specs[y] = x
-                            break
-                        end
+            else
+                print("hurry")
+                for y; y <= 9; y++
+                    bug = scp[y]
+                    if scps[y] == role then
+                        scp++
+                        break
+                    end
+                    bug = found[y]
+                    if found[y] == role then
+                        print("lego")
+                        secure++
+                        break
+                    end
+                    bug = cd[y]
+                    if cd[y] == role then
+                        chaos++
+                        break
                     end
                 end
             end
-            for y; y <= len scps; y++
-                if scps[y] == role then
-                    scp++
-                    break
-                end
-                if found[y] == role then
-                    secure++
-                    break
-                end
-                if cd[y] == role then
-                    chaos++
-                    break
-                end
+        end
+    end
+    for spectator; spectator < 65; spectator++
+        print(len specs)
+        print("this")
+        spec = specs[spectator]
+        if IsPlayerConnected(spec) == 1 then
+            if scptext != 0 then
+                RemovePlayerText(spec,scptext)
+                RemovePlayerText(spec,foundtext)
+                RemovePlayerText(spec,cdtext)
+            end
+            if GetPlayerType(spec) == 0 then
+                scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 50, 200, 1530000, "Courier New Rus.ttf", 20)
+                foundtext = CreatePlayerText(spec,"Foundation Personnel remaining: "+ secure, 0, 200, 30, "Courier New Rus.ttf", 20)
+                cdtext = CreatePlayerText(spec,"Human Intruders Remaining: "+ chaos, 0, 200, 256, "Courier New Rus.ttf", 20)
+                print("no")
+                continue
             end
         end
+        specs[spectator] = 0
     end
 end
