@@ -26,7 +26,7 @@ found[4] = 4
 
 specs = [64, SE_INT]
 
-global scptext,foundtext,cdtext = 0
+global scptext, foundtext, cdtext = 0
 
 public def OnPlayerGetNewRole()
     print(scps)
@@ -40,33 +40,29 @@ public def OnPlayerGetNewRole()
         if IsPlayerConnected(x) == 1 then
             role = GetPlayerType(x)
             if role == 0 then
-                for y; y < 65; y++
+                for y = 0; y < 65; y++
                     bug = specs[y]
                     print(bug)
                     if bug == 0 then
                         specs[y] = x
                         break
-                    end
+                    end 
                 end
             else
-                print("hurry")
-                for y; y <= 9; y++
-                    bug = scp[y]
-                    print(bug)
-                    if scps[y] == role then
+                for y = 0; y < 9; y++
+                    print(y)
+                    bug = scps[y]
+                    if bug == role then
                         scp++
                         break
                     end
                     bug = found[y]
-                    print(bug)
-                    if found[y] == role then
-                        print("lego")
+                    if bug == role then
                         secure++
                         break
                     end
                     bug = cd[y]
-                    print(bug)
-                    if cd[y] == role then
+                    if bug == role then
                         chaos++
                         break
                     end
@@ -74,9 +70,10 @@ public def OnPlayerGetNewRole()
             end
         end
     end
-    for spectator; spectator < 65; spectator++
-        print(len specs)
-        print("this")
+    print(scp)
+    print(secure)
+    print(chaos)
+    for spectator = 0; spectator < 65; spectator++
         spec = specs[spectator]
         if IsPlayerConnected(spec) == 1 then
             if scptext != 0 then
@@ -87,7 +84,7 @@ public def OnPlayerGetNewRole()
             if GetPlayerType(spec) == 0 then
                 scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 50, 200, 1530000, "Courier New Rus.ttf", 20)
                 foundtext = CreatePlayerText(spec,"Foundation Personnel remaining: "+ secure, 0, 200, 30, "Courier New Rus.ttf", 20)
-                cdtext = CreatePlayerText(spec,"Human Intruders Remaining: "+ chaos, 0, 200, 256, "Courier New Rus.ttf", 20)
+                cdtext = CreatePlayerText(spec,"Chaos Insurgents/Class-D Remaining: "+ chaos, 0, 200, 256, "Courier New Rus.ttf", 20)
                 print("no")
                 continue
             end
