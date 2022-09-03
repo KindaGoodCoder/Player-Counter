@@ -29,18 +29,15 @@ specs = [64, SE_INT]
 global scptext, foundtext, cdtext = 0
 
 public def OnPlayerGetNewRole()
-    print(scps)
     local scp = 0
     local secure = 0
     local chaos = 0
-    print("lego")
     local bug //a variable to work around a bug
     local role 
     for x; x < 65; x++
         if IsPlayerConnected(x) == 1 then
             role = GetPlayerType(x)
             if role == 0 then
-                print("pls")
                 for y; y < 65; y++
                     bug = specs[y]
                     print(bug)
@@ -70,9 +67,6 @@ public def OnPlayerGetNewRole()
             end
         end
     end
-    print(scp)
-    print(secure)
-    print(chaos)
     for spec; spec < 65; spec++
         if IsPlayerConnected(spec) == 1 then
             if scptext != 0 then
@@ -81,9 +75,9 @@ public def OnPlayerGetNewRole()
                 RemovePlayerText(spec,cdtext)
             end
             if GetPlayerType(spec) == 0 then
-                scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 50, 200, 1530000, "Courier New Rus.ttf", 20)
-                foundtext = CreatePlayerText(spec,"Foundation Personnel remaining: "+ secure, 0, 200, 30, "Courier New Rus.ttf", 20)
-                cdtext = CreatePlayerText(spec,"Chaos Insurgents/Class-D Remaining: "+ chaos, 0, 200, 256, "Courier New Rus.ttf", 20)
+                scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 255000, "Courier New Rus.ttf", 20)
+                foundtext = CreatePlayerText(spec,"Foundation Personnel remaining: "+ secure, 15, 220, 255, "Courier New Rus.ttf", 20)
+                cdtext = CreatePlayerText(spec,"Chaos Insurgents/Class-D Remaining: "+ chaos, 15, 240, 12345678, "Courier New Rus.ttf", 20)
                 print("no")
                 spec++
                 continue
