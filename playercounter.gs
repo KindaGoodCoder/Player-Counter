@@ -24,28 +24,17 @@ found[2] = 8
 found[3] = 9
 found[4] = 4
 
-specs = [64, SE_INT]
-
-global scptext, foundtext, cdtext = 0
+global specstext, scptext, foundtext, cdtext = 0
 
 public def OnPlayerGetNewRole()
-    local scp = 0
-    local secure = 0
-    local chaos = 0
+    local scp, secure, chaos, specs = 0
     local bug //a variable to work around a bug
     local role 
     for x; x < 65; x++
         if IsPlayerConnected(x) == 1 then
             role = GetPlayerType(x)
             if role == 0 then
-                for y; y < 65; y++
-                    bug = specs[y]
-                    print(bug)
-                    if specs[y] == 0 then
-                        specs[y] = x
-                        break
-                    end 
-                end
+                specs++
             else
                 for y = 0; y < 9; y++
                     bug = scps[y]
@@ -73,14 +62,13 @@ public def OnPlayerGetNewRole()
                 RemovePlayerText(spec,scptext)
                 RemovePlayerText(spec,foundtext)
                 RemovePlayerText(spec,cdtext)
+                RemovePlayerText(spec,specstext)
             end
             if GetPlayerType(spec) == 0 then
-                scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 255000, "Courier New Rus.ttf", 20)
-                foundtext = CreatePlayerText(spec,"Foundation Personnel remaining: "+ secure, 15, 220, 255, "Courier New Rus.ttf", 20)
-                cdtext = CreatePlayerText(spec,"Chaos Insurgents/Class-D Remaining: "+ chaos, 15, 240, 12345678, "Courier New Rus.ttf", 20)
-                print("no")
-                spec++
-                continue
+                scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 16711680, "Courier New Rus.ttf", 20) //red
+                foundtext = CreatePlayerText(spec,"Security Remaining: "+ secure, 15, 230, 255, "Courier New Rus.ttf", 20) //blue
+                cdtext = CreatePlayerText(spec,"CI/Class-D Remaining: "+ chaos, 15, 260, 25600, "Courier New Rus.ttf", 20) //green
+                specstext = CreatePlayerText(spec,"Dead Players: "+ specs, 15, 290, 100, "Courier New Rus.ttf", 20) //green
             end
         end
     end
