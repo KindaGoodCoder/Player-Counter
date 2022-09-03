@@ -40,17 +40,17 @@ public def OnPlayerGetNewRole()
         if IsPlayerConnected(x) == 1 then
             role = GetPlayerType(x)
             if role == 0 then
-                for y = 0; y < 65; y++
+                print("pls")
+                for y; y < 65; y++
                     bug = specs[y]
                     print(bug)
-                    if bug == 0 then
+                    if specs[y] == 0 then
                         specs[y] = x
                         break
                     end 
                 end
             else
                 for y = 0; y < 9; y++
-                    print(y)
                     bug = scps[y]
                     if bug == role then
                         scp++
@@ -73,8 +73,7 @@ public def OnPlayerGetNewRole()
     print(scp)
     print(secure)
     print(chaos)
-    for spectator = 0; spectator < 65; spectator++
-        spec = specs[spectator]
+    for spec; spec < 65; spec++
         if IsPlayerConnected(spec) == 1 then
             if scptext != 0 then
                 RemovePlayerText(spec,scptext)
@@ -86,9 +85,9 @@ public def OnPlayerGetNewRole()
                 foundtext = CreatePlayerText(spec,"Foundation Personnel remaining: "+ secure, 0, 200, 30, "Courier New Rus.ttf", 20)
                 cdtext = CreatePlayerText(spec,"Chaos Insurgents/Class-D Remaining: "+ chaos, 0, 200, 256, "Courier New Rus.ttf", 20)
                 print("no")
+                spec++
                 continue
             end
         end
-        specs[spectator] = 0
     end
 end
