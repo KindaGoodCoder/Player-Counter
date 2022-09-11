@@ -27,7 +27,7 @@ found[4] = 4
 global specstext, scptext, foundtext, cdtext = 0
 
 public def OnPlayerGetNewRole()
-    local scp, secure, chaos, specs = 0
+    local scp = 0, secure = 0, chaos = 0, specs = 0
     local bug //a variable to work around a bug
     local role 
     for x; x < 65; x++
