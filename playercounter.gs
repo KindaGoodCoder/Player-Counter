@@ -24,7 +24,7 @@ found[2] = 8
 found[3] = 9
 found[4] = 4
 
-global specstext, scptext, foundtext, cdtext = 0
+global text = [4,SE_INT]
 
 public def OnPlayerGetNewRole()
     local scp = 0, secure = 0, chaos = 0, specs = 0
@@ -37,18 +37,15 @@ public def OnPlayerGetNewRole()
                 specs++
             else
                 for y = 0; y < 9; y++
-                    bug = scps[y]
-                    if bug == role then
+                    if scps[y] == role then
                         scp++
                         break
                     end
-                    bug = found[y]
-                    if bug == role then
+                    if found[y] == role then
                         secure++
                         break
                     end
-                    bug = cd[y]
-                    if bug == role then
+                    if cd[y] == role then
                         chaos++
                         break
                     end
@@ -59,16 +56,15 @@ public def OnPlayerGetNewRole()
     for spec; spec < 65; spec++
         if IsPlayerConnected(spec) == 1 then
             if scptext != 0 then
-                RemovePlayerText(spec,scptext)
-                RemovePlayerText(spec,foundtext)
-                RemovePlayerText(spec,cdtext)
-                RemovePlayerText(spec,specstext)
+                for x; x < 4; x++
+                    RemovePlayerText(spec,text[x])
+                end
             end
             if GetPlayerType(spec) == 0 then
-                scptext = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 16711680, "Courier New Rus.ttf", 20) //red
-                foundtext = CreatePlayerText(spec,"Security Remaining: "+ secure, 15, 230, 255, "Courier New Rus.ttf", 20) //blue
-                cdtext = CreatePlayerText(spec,"CI/Class-D Remaining: "+ chaos, 15, 260, 25600, "Courier New Rus.ttf", 20) //green
-                specstext = CreatePlayerText(spec,"Dead Players: "+ specs, 15, 290, 100, "Courier New Rus.ttf", 20)
+                text[0] = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 16711680, "Courier New Rus.ttf", 20) //red
+                text[1] = CreatePlayerText(spec,"Security Remaining: "+ secure, 15, 230, 255, "Courier New Rus.ttf", 20) //blue
+                text[2] = CreatePlayerText(spec,"CI/Class-D Remaining: "+ chaos, 15, 260, 25600, "Courier New Rus.ttf", 20) //green
+                text[3] = CreatePlayerText(spec,"Dead Players: "+ specs, 15, 290, 100, "Courier New Rus.ttf", 20)
             end
         end
     end
