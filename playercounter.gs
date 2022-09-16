@@ -55,7 +55,7 @@ public def OnPlayerGetNewRole()
     end
     for spec; spec < 65; spec++
         if IsPlayerConnected(spec) == 1 then
-            for x; x < 4; x++
+            for x = 0; x < 4; x++
                 RemovePlayerText(spec,text[x])
             end
             if GetPlayerType(spec) == 0 then
