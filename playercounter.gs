@@ -26,6 +26,8 @@ found[4] = 4
 
 global text = [4,SE_INT]
 
+//def script()
+
 public def OnPlayerGetNewRole()
     local scp = 0, secure = 0, chaos = 0, specs = 0
     local bug //a variable to work around a bug
