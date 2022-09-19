@@ -17,6 +17,7 @@ scps[0] = 16 //forgot it started at 0
 //Class D Team
 cd[1] = 3
 cd[0] = 7
+
 //Security
 found[0] = 2
 found[1] = 1
