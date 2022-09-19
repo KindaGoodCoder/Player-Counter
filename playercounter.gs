@@ -31,7 +31,7 @@ global text = [4,SE_INT]
 public def OnPlayerConnect()
     OnPlayerGetNewRole()
 end
-    
+
 public def OnPlayerGetNewRole()
     local scp = 0, secure = 0, chaos = 0, specs = 0
     local bug //a variable to work around a bug
@@ -68,7 +68,7 @@ public def OnPlayerGetNewRole()
                 text[0] = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 16711680, "Courier New Rus.ttf", 20) //red
                 text[1] = CreatePlayerText(spec,"Security Remaining: "+ secure, 15, 230, 255, "Courier New Rus.ttf", 20) //blue
                 text[2] = CreatePlayerText(spec,"CI/Class-D Remaining: "+ chaos, 15, 260, 25600, "Courier New Rus.ttf", 20) //green
-                text[3] = CreatePlayerText(spec,"Dead Players: "+ specs, 15, 290, 100, "Courier New Rus.ttf", 20)
+                text[3] = CreatePlayerText(spec,"Dead Players: "+ specs, 15, 290, 255255255, "Courier New Rus.ttf", 20)
             end
         end
     end
