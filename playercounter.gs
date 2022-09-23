@@ -27,8 +27,6 @@ found[4] = 4
 
 global text = [4,SE_INT]
 
-//def script()
-
 public def OnPlayerConnect()
     OnPlayerGetNewRole()
 end
