@@ -73,4 +73,4 @@ public def OnPlayerGetNewRole()
             end
         end
     end
-end
+end\
