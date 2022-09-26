@@ -42,17 +42,16 @@ public def OnPlayerGetNewRole()
                 specs++
             else
                 for y = 0; y < 9; y++
-                    if scps[y] == role then
-                        scp++
-                        break
-                    end
-                    if found[y] == role then
-                        secure++
-                        break
-                    end
-                    if cd[y] == role then
-                        chaos++
-                        break
+                    select role
+                        case scps[y]
+                            scp++
+                            break
+                        case found[y]
+                            secure++
+                            break
+                        case cd[y]
+                            chaos++
+                            break
                     end
                 end
             end
@@ -60,7 +59,7 @@ public def OnPlayerGetNewRole()
     end
     for spec; spec < 65; spec++
         if IsPlayerConnected(spec) == 1 then
-            for x = 0; x < 4; x++
+            for x = 0; x < 4; x++ 
                 RemovePlayerText(spec,text[x])
             end
             if GetPlayerType(spec) == 0 then
