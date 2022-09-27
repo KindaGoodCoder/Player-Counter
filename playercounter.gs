@@ -33,26 +33,21 @@ end
 
 public def OnPlayerGetNewRole()
     local scp = 0, secure = 0, chaos = 0, specs = 0
-    local bug //a variable to work around a bug
-    local role 
     for x; x < 65; x++
         if IsPlayerConnected(x) == 1 then
-            role = GetPlayerType(x)
-            if role == 0 then
-                specs++
-            else
-                for y = 0; y < 9; y++
-                    select role
-                        case scps[y]
-                            scp++
-                            break
-                        case found[y]
-                            secure++
-                            break
-                        case cd[y]
-                            chaos++
-                            break
-                    end
+            for y = 0; y < 9; y++
+                select GetPlayerType(x)
+                    case 0
+                        specs++; break
+                    case scps[y]
+                        scp++
+                        break
+                    case found[y]
+                        secure++
+                        break
+                    case cd[y]
+                        chaos++
+                        break
                 end
             end
         end
