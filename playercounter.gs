@@ -51,9 +51,7 @@ public def OnPlayerGetNewRole()
     end
     for spec; spec < 65; spec++
         if IsPlayerConnected(spec) == 1 then
-            for x = 0; x < 4; x++ 
-                RemovePlayerText(spec,text[x])
-            end
+            for x = 0; x < 4; x++; RemovePlayerText(spec,text[x]); end
             if GetPlayerType(spec) == 0 then
                 text[0] = CreatePlayerText(spec,"SCPs Remaining: "+ scp, 15, 200, 16711680, "Courier New Rus.ttf", 20) //red
                 text[1] = CreatePlayerText(spec,"Security Remaining: "+ secure, 15, 230, 255, "Courier New Rus.ttf", 20) //blue
