@@ -40,14 +40,11 @@ public def OnPlayerGetNewRole()
                     case 0
                         specs++; break
                     case scps[y]
-                        scp++
-                        break
+                        scp++; break
                     case found[y]
-                        secure++
-                        break
+                        secure++; break
                     case cd[y]
-                        chaos++
-                        break
+                        chaos++; break
                 end
             end
         end
