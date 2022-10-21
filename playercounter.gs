@@ -3,6 +3,7 @@
 global scps = [9,SE_INT]
 global cd = [2,SE_INT]
 global found = [5,SE_INT]
+
 //SCPs
 scps[1] = 5
 scps[2] = 6
@@ -64,6 +65,7 @@ public def OnPlayerGetNewRole()
                 text[1] = playertext(spec,"Security Remaining: "+ secure, 2.08, 255) //blue
                 text[2] = playertext(spec,"CI/Class-D Remaining: "+ chaos, 1.84, 25600) //green
                 text[3] = playertext(spec,"Dead Players: "+ specs, 1.65, 255255255) //God knows
+            end
         end
     end
 end
