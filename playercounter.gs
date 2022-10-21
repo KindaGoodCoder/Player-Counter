@@ -31,10 +31,8 @@ public def OnPlayerConnect()
     OnPlayerGetNewRole()
 end
 
-def playertext(txt,y,clr)
-    print("work")
-    print(screen_height)
-    return CreatePlayerText(spec,txt, screen_width, screen_height/y, clr, "Courier New Rus.ttf", 20)
+def playertext(plr,txt,width,y,clr)
+    return CreatePlayerText(plr,txt, width, y, clr, "Courier New Rus.ttf", 20)
 end
 
 public def OnPlayerGetNewRole()
@@ -59,15 +57,12 @@ public def OnPlayerGetNewRole()
         if IsPlayerConnected(spec) == 1 then
             for x = 0; x < 4; x++; RemovePlayerText(spec,text[x]); end
             if GetPlayerType(spec) == 0 then
-                print("pain")
-                global screen_width = GetPlayerMonitorWidth(spec)/45
-                global screen_height = GetPlayerMonitorHeight(spec)
-                text[0] = playertext("SCPs Remaining: "+ scp, 2.4,16711680) //red
-                text[1] = playertext("Security Remaining: "+ secure, 2.08, 255) //blue
-                text[2] = playertext("CI/Class-D Remaining: "+ chaos, 1.84, 25600) //green
-                text[3] = playertext("Dead Players: "+ specs, 1.65, 255255255)
-                screen_width = nil
-                screen_height = nil
+                local screen_width = GetPlayerMonitorWidth(spec)/45
+                local screen_height = GetPlayerMonitorHeight(spec)
+                text[0] = playertext(spec,"SCPs Remaining: "+ scp, screen_width, screen_height/2.4,16711680) //red
+                text[1] = playertext(spec,"Security Remaining: "+ secure, screen_width, screen_height/2.08, 255) //blue
+                text[2] = playertext(spec,"CI/Class-D Remaining: "+ chaos, screen_width, screen_height/1.84, 25600) //green
+                text[3] = playertext(spec,"Dead Players: "+ specs, screen_width, screen_height/1.65, 255255255)
             end
         end
     end
