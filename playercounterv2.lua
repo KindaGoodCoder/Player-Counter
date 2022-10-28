@@ -2,6 +2,7 @@
 -- cd = {3,7}
 -- found = {1,2,4,8,9}
 
-function OnServerStart()
+function OnServerStart(port)
     print("pain")
+    return -1
 end
