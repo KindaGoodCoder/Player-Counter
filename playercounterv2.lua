@@ -38,15 +38,15 @@ function OnPlayerGetNewRole()
     for spec = 1, 64 do
         if isplayerconnected(spec) == 1 then
             print("pain")
-            for x = 0, 3 do removeplayertext(spec,text[x]) end
+            -- for x = 0, 3 do removeplayertext(spec,text[x]) end
             if getplayertype(spec) == 0 then
                 print("working")
                 screen_width = getplayermonitorwidth(spec)/45
                 screen_height = getplayermonitorheight(spec)
-                text[0] = playertext(spec,"SCPs Remaining: "+ scp, 2.4,16711680) //red
-                text[1] = playertext(spec,"Security Remaining: "+ secure, 2.08, 255) //blue
-                text[2] = playertext(spec,"CI/Class-D Remaining: "+ chaos, 1.84, 25600) //green
-                text[3] = playertext(spec,"Dead Players: "+ specs, 1.65, 255255255) //God knows
+                -- text[0] = playertext(spec,"SCPs Remaining: "+ scp, 2.4,16711680) //red
+                -- text[1] = playertext(spec,"Security Remaining: "+ secure, 2.08, 255) //blue
+                -- text[2] = playertext(spec,"CI/Class-D Remaining: "+ chaos, 1.84, 25600) //green
+                -- text[3] = playertext(spec,"Dead Players: "+ specs, 1.65, 255255255) //God knows
             end
         end
     end
