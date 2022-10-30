@@ -19,7 +19,7 @@ function OnPlayerGetNewRole()
     for x = 1, 64 do        
         if isplayerconnected(x) == 1 then
             for y = 1, 9 do
-                local russia = {
+                local select = {
                     [0] = function () specs = specs + 1 end
                     -- [scps[y]] = function(x) scp = scp + 1; break end,
                     -- [cd[y]] = function(x) secure = secure + 1; break end,
