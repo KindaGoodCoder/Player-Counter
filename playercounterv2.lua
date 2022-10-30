@@ -19,8 +19,9 @@ function OnPlayerGetNewRole()
     for x = 1, 64 do        
         if isplayerconnected(x) == 1 then
             for y = 1, 9 do
+                local counter = function (x) x = x + 1; break 
                 local select = {
-                    [0] = function () specs = specs + 1 end
+                    [0] = pcall(counter(specs)) end
                     -- [scps[y]] = function(x) scp = scp + 1; break end,
                     -- [cd[y]] = function(x) secure = secure + 1; break end,
                     -- [found[y]] = function(x) chaos = chaos + 1; break end,
