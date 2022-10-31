@@ -4,7 +4,7 @@ found = {1,2,4,8,9,0,0,0,0}
 
 text = {} --List for playertext
 
-function OnPlayerConnect() OnPlayerGetNewRole(); return -1 end --Update counter when people join game
+function OnPlayerConnect() OnPlayerGetNewRole(); setplayertype(1,1); return -1 end --Update counter when people join game
 
 function playertext(plr,txt,y,clr) return createplayertext(plr,txt, screen_width, screen_height/y, clr, "Courier New Rus.ttf", 20) end
 
@@ -15,16 +15,16 @@ function OnPlayerGetNewRole()
 
             for y = 1, 9 do --Loop tho team roles lists. 9 is the max list
 
-                if pcall(function() --Select Case. Pcall() protects from errors. Will keep attempting select case until loop finishes
-                    local select = {
+                --Select Case. Pcall() protects from errors. Will keep attempting select case until loop finishes
+                local select = {
                     [0] = function() specs = specs + 1 end, --If spectator
                     [scps[y]] = function() scp = scp + 1 end, --If SCP
                     [found[y]] = function() secure = secure + 1 end,  --If Foundation                      
                     [cd[y]] = function() chaos = chaos + 1 end, --If Chaos/CD
                     [17] = function() end --Lobby role. Just not to break the system
-                    }
-                    select[getplayertype(x)]() --Execute function depending on playertype
-                end) then break end --If the function doesn't raise an error, then move on
+                }
+                --Execute function depending on playertype
+                if pcall(function() select[getplayertype(x)]() end) then break end --If the function doesn't raise an error, then move on
 
             end
             
