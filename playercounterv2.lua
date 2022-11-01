@@ -6,11 +6,12 @@ text = {} --List for playertext
 
 function OnScriptLoaded() print("PlayerCounter"); return -1 end
 
-function OnPlayerConnect() OnPlayerGetNewRole();  return -1 end --Update counter when people join game
+function OnPlayerConnect() OnPlayerGetNewRole(); return -1 end --Update counter when people join game
 
 function playertext(plr,txt,y,clr) return createplayertext(plr,txt, screen_width, screen_height/y, clr, "Courier New Rus.ttf", 20) end
 
 function OnPlayerGetNewRole()
+    --setplayertype(1,14) --For debugging
     local scp,secure,chaos,specs = 0,0,0,0 --Reset counter
     for x = 1, 64 do --Loop tho each plr
         if isplayerconnected(x) == 1 then --connected
@@ -26,12 +27,16 @@ function OnPlayerGetNewRole()
                     [17] = function() end --Lobby role. Just not to break the system
                 }
                 --Execute function depending on playertype
-                if pcall(function() select[getplayertype(x)]() end) then break end --If the function doesn't raise an error, then move on
+                if type(select[getplayertype(x)]) == "function" then select[getplayertype(x)]() break end --If the function doesn't raise an error, then move on
                 
             end
             
         end
     end
+    -- print(specs)
+    -- print(scp)
+    -- print(secure)
+    -- print(chaos)
     for spec = 1, 64 do
         if isplayerconnected(spec) == 1 then
 
