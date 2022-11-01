@@ -6,7 +6,7 @@ text = {} --List for playertext
 
 function OnScriptLoaded() print("PlayerCounter"); return -1 end
 
-function OnPlayerConnect() OnPlayerGetNewRole(); setplayertype(1,14); return -1 end --Update counter when people join game
+function OnPlayerConnect() OnPlayerGetNewRole();  return -1 end --Update counter when people join game
 
 function playertext(plr,txt,y,clr) return createplayertext(plr,txt, screen_width, screen_height/y, clr, "Courier New Rus.ttf", 20) end
 
