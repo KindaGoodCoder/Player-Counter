@@ -18,7 +18,7 @@ function OnPlayerGetNewRole()
 
             for y = 1, 9 do --Loop tho team roles lists. 9 is the max list
 
-                --Select Case. Pcall() protects from errors. Will keep attempting select case until loop finishes
+                --Will keep attempting select case until loop finishes
                 local select = {
                     [0] = function() specs = specs + 1 end, --If spectator
                     [scps[y]] = function() scp = scp + 1 end, --If SCP
@@ -46,10 +46,10 @@ function OnPlayerGetNewRole()
 
                 screen_width = getplayermonitorwidth(spec)/45 --Get player screen size and maths is performed here and in the playertext() function
                 screen_height = getplayermonitorheight(spec)
-                text[1] = playertext(spec,"SCPs Remaining: ".. tostring(scp), 2.4,16711680) --red
-                text[2] = playertext(spec,"Security Remaining: ".. tostring(secure), 2.08, 255) --blue
-                text[3] = playertext(spec,"CI/Class-D Remaining: ".. tostring(chaos), 1.84, 25600) --green
-                text[4] = playertext(spec,"Dead Players: ".. tostring(specs), 1.65, 255255255) --God knows
+                text[1] = playertext(spec,"SCPs Remaining: ".. scp, 2.4,16711680) --red
+                text[2] = playertext(spec,"Security Remaining: ".. secure, 2.08, 255) --blue
+                text[3] = playertext(spec,"CI/Class-D Remaining: ".. chaos, 1.84, 25600) --green
+                text[4] = playertext(spec,"Dead Players: ".. specs, 1.65, 255255255) --God knows
 
             end
 
