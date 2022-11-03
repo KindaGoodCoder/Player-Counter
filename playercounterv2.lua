@@ -27,7 +27,7 @@ function OnPlayerGetNewRole()
                     [17] = function() end --Lobby role. Just not to break the system
                 }
                 --Execute function depending on playertype
-                if type(select[getplayertype(x)]) == "function" then select[getplayertype(x)]() break end --If the function doesn't raise an error, then move on
+                if type(select[getplayertype(x)]) == "function" then select[getplayertype(x)](); break end --If the function doesn't raise an error, then move on
                 
             end
             
