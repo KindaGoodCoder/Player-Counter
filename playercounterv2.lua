@@ -4,11 +4,15 @@ found = {1,2,4,8,9,0,0,0,0}
 
 text = {} --List for playertext
 
-function OnScriptLoaded() print("PlayerCounter"); return -1 end
+function OnScriptLoaded() --Check if script loaded
+    print("PlayerCounter")
+    return -1
+end
 
 function OnPlayerConnect() OnPlayerGetNewRole(); return -1 end --Update counter when people join game
 
 function OnPlayerGetNewRole()
+
     update = function()
         --setplayertype(1,14) --For debugging
         local scp,secure,chaos,specs = 0,0,0,0 --Reset counter
@@ -35,7 +39,7 @@ function OnPlayerGetNewRole()
         -- print(specs)
         -- print(scp)
         -- print(secure)
-        -- print(chaos)
+        -- print(chaos) --Debugging
         for spec = 1, 64 do
             if isplayerconnected(spec) == 1 then
 
@@ -58,6 +62,7 @@ function OnPlayerGetNewRole()
         end
         return -1 --Cause LUA breaks without return -1 according to Ne4to
     end
+
     update()
     createtimer("update",1500,0) --Cause GUI sometimes bugs out
     return -1
