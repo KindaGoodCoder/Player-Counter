@@ -65,5 +65,6 @@ function OnPlayerGetNewRole()
 
     update()
     createtimer("update",1500,0) --Cause GUI sometimes bugs out
+    createtimer("update",3000,0)
     return -1
 end
