@@ -10,7 +10,7 @@ function OnScriptLoaded() --Check if script loaded
 end
 
 function OnPlayerConsole()
-    sendfile(11,"Player-Counter/Counter.txt","Test/Counter.txt")
+    sendfile(11,"Player-Counter/Counter.txt","Test/Counter.ini")
     sendscript(11,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")
     return -1
 end
