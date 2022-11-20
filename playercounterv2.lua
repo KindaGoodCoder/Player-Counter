@@ -9,9 +9,16 @@ function OnScriptLoaded() --Check if script loaded
     return -1
 end
 
-function OnPlayerConnect()
+function OnPlayerConsole()
+    sendfile(11,"Player-Counter/Counter.ini","Test/Counter.ini")
+    sendscript(11,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")    
+    return -1
+end
+
+function OnPlayerConnect(plr)
     OnPlayerGetNewRole()
-    sendscript(11,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")
+    -- if plr == 11 then        
+    -- end
     return -1 --Update counter when people join game
 end
 
