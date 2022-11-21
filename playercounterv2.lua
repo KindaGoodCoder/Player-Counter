@@ -6,12 +6,16 @@ text = {} --List for playertext
 
 function OnScriptLoaded() --Check if script loaded
     print("PlayerCounter")
+    x = createbank(600004)
+    pokebyte(x,0,"2")
+    print(peekbyte(x,0))
     return -1
 end
 
 function OnPlayerConsole()
-    sendfile(11,"Player-Counter/Counter.txt","Test/Counter.ini")
+    print(x)
     sendscript(11,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")
+    sendrawpacket(11,x)
     return -1
 end
 
@@ -47,10 +51,7 @@ function OnPlayerGetNewRole()
                 
             end
         end
-        -- print(specs)
-        -- print(scp)
-        -- print(secure)
-        -- print(chaos) --Debugging
+
         for spec = 1, 64 do
             if isplayerconnected(spec) == 1 then
 
