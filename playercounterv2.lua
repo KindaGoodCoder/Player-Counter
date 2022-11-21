@@ -6,9 +6,11 @@ text = {} --List for playertext
 
 function OnScriptLoaded() --Check if script loaded
     print("PlayerCounter")
-    pain = createbank(600004)
-    pokebyte(pain,0,"2")
-    print(peekbyte(pain,0))
+    pain = createbank(64)
+    print(asc("f"))
+    pokebyte(pain,0,48)
+    print(chr(102))
+    -- print(chr(peekbyte(pain,0)))
     
     return -1
 end

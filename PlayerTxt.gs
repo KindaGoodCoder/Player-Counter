@@ -1,9 +1,19 @@
 #PLAYERSCRIPT
 
-global package
+global counter
+
 public def OnReceiveRawPacket(data)
     PeekByte(data)
-    package = [4,SE_INT]
+    counter = [4,SE_INT]
+    data = "64|64|64|64"
+
+    for x = 0; x < 3; x++
+        pos = Instr(data,"|",1)        
+        counter[x] = Left(data,pos-1)
+        data = Right(data,len data - pos)
+    end
+    
+    counter[3] = data
 
 end
 
