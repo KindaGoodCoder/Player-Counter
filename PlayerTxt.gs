@@ -1,7 +1,10 @@
 #PLAYERSCRIPT
 
+global package
 public def OnReceiveRawPacket(data)
     PeekByte(data)
+    package = [4,SE_INT]
+
 end
 
 public def OnUpdate()
