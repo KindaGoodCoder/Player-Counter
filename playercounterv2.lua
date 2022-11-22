@@ -5,18 +5,17 @@ found = {1,2,4,8,9,0,0,0,0}
 text = {} --List for playertext
 
 function OnScriptLoaded() --Check if script loaded
-    print("PlayerCounter")
-    
+    print("PlayerCounter")    
     return -1
 end
 
 function OnPlayerConnect(plr)
+    sendscript(plr,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")        
     OnPlayerGetNewRole()
-    sendscript(plr,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")    
-    -- if plr == 11 then        
-    -- end
     return -1 --Update counter when people join game
 end
+
+function plr_loop(Run_Function) for plr = 1, 64 do if isplayerconnected(plr) == 1 then Run_Function(plr) end end end
 
 function OnPlayerGetNewRole()
     --setplayertype(1,14) --For debugging
@@ -42,12 +41,15 @@ function OnPlayerGetNewRole()
         end
     end
 
-    data = createbank(7)
-    for x,v in ipairs({scp,secure,chaos,specs}) do
-        pokeint(data,x-1,v)
-    end
-    print(peekint(data,0))
-    if isplayerconnected(11) == 1 then sendrawpacket(11,data) end    
+    data = createbank(11)
+    for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x-1,v) end
+
+    plr_loop(function(plr)
+        pokebyte(data, 4, getplayertype(plr))
+        sendrawpacket(plr,data)
+    end)
+
+    freebank(data)
 
     return -1
 end
