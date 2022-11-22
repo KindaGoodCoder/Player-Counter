@@ -10,14 +10,15 @@ function OnScriptLoaded() --Check if script loaded
 end
 
 function OnPlayerConnect(plr)
-    sendscript(plr,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")        
+    sendscript(plr,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc") --Send player (local) script to joining player
     OnPlayerGetNewRole()    
     return -1 --Update counter when people join game
 end
 
-function OnPlayerDisconnect() OnPlayerGetNewRole(); return -1 end
+function OnPlayerDisconnect() OnPlayerGetNewRole(); return -1 end --Update counter when people leave
 
 function plr_loop(Run_Function) for plr = 1, 64 do if isplayerconnected(plr) == 1 then Run_Function(plr) end end end
+-- Run Function for every connected player in server
 
 function OnPlayerGetNewRole()
     --setplayertype(1,14) --For debugging
@@ -39,15 +40,15 @@ function OnPlayerGetNewRole()
             
         end
     end)
-    print(string.format("%d:%d:%d:%d",scp,secure,chaos,specs))
-    data = createbank(11)
-    for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x-1,v) end
+
+    data = createbank(11) --Create data bank. Can be shared between server and client
+    for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x-1,v) end --Add each counter to a section of the data bank. (Positions 0,1,2,3 specifically)
 
     plr_loop(function(plr)
-        pokebyte(data, 4, getplayertype(plr))
-        sendrawpacket(plr,data)
-    end)
+        pokebyte(data, 4, getplayertype(plr)) --The last slot will be for playertype (Less complicated then calculating it). Confirm if spectator or not
+        sendrawpacket(plr,data) --Send the data
+    end) --data[4] will be overridden every loop
 
-    freebank(data)
+    freebank(data) --Delete bank. Won't be needed until next role update which recreates it
     return -1
 end
