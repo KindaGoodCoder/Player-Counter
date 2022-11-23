@@ -9,7 +9,7 @@ public def OnLaunchGame()
 end
 
 def createtext(heightdiv,txt,index,r,g,b)
-    color(r,g,b) //--Set Color of text. SCP is red, chaos is dark green
+    color(r,g,b) //--Set Color of text. e.g. SCP is red, chaos is dark green
     text(width,height/heightdiv,txt + counter[index],0,0) --Create Text
 end
 
@@ -22,7 +22,7 @@ public def OnReceiveRawPacket(data)
         counter[x] = peekbyte(data,x) //--Extract counters from data
     end
     role = peekbyte(data,4) //--Extract role
-    freebank(data) //--Delete bank (I dont know if this is bad, only tested with bots)
+    freebank(data) //--Delete bank (I dont know if this would break the script, I've only tested with bots who probably dont run these scripts_
 end
 
 public def OnUpdate() //--Every frame. We should spawn explosions!
@@ -31,7 +31,7 @@ public def OnUpdate() //--Every frame. We should spawn explosions!
     height = getmonitorheight() //--Screen size
     
     if role == 0 then //-- If spectator show text
-        createtext(2.4,"SCPs Remaining: ", 0, 255, 0, 0) //--Red
+        createtext(2.40,"SCPs Remaining: ", 0, 255, 0, 0) //--Red
         createtext(2.08,"Security Remaining: ", 1, 0, 0, 255) //--Blue
         createtext(1.84,"Insurgents Remaining: ", 2, 0, 100, 0) //--Green
         createtext(1.65,"Dead Players: ", 3, 255, 255, 255) //--White
