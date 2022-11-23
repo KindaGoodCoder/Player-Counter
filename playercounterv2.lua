@@ -10,7 +10,7 @@ function OnScriptLoaded() --Check if script loaded
 end
 
 function OnPlayerConnect(plr)
-    sendscript(plr,"Player-Counter/PlayerTxt.gsc","Test/playercounter.gsc")        
+    sendscript(plr,"Player-Counter/PlayerTxt.gsc","Vault/Player-Counter/playercounter.gsc")        
     OnPlayerGetNewRole()
     return -1 --Update counter when people join game
 end
