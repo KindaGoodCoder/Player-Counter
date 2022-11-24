@@ -1,5 +1,5 @@
 #PLAYERSCRIPT
-//--PROGRAMMED IN DODGY SKYNET while playercounterv2.lua was programmed in Lua. Have to juggle between two languages
+//--Programmed in Skynet while playercounterv2.lua was programmed in Lua. Have to juggle between two languages
 global counter = [4,SE_INT] //--Table to hold our counters
 global font,role,width,height //--Empty variables to be filled
 
