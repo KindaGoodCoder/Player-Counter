@@ -1,4 +1,5 @@
 #PLAYERSCRIPT
+
 //--Programmed in Skynet while playercounterv2.lua was programmed in Lua. Have to juggle between two languages
 global counter = [4,SE_INT] //--Table to hold our counters
 global font,role,width,height //--Empty variables to be filled
@@ -10,7 +11,7 @@ end
 
 def createtext(heightdiv,txt,index,r,g,b)
     color(r,g,b) //--Set Color of text. e.g. SCP is red, chaos is dark green
-    text(width,height/heightdiv,txt + counter[index],0,0) --Create Text
+    text(width,height/heightdiv,txt + counter[index],0,0) //--Create Text
 end
 
 public def OnDisconnect()
@@ -22,7 +23,6 @@ public def OnReceiveRawPacket(data)
         counter[x] = peekbyte(data,x) //--Extract counters from data
     end
     role = peekbyte(data,4) //--Extract role
-    freebank(data) //--Delete bank (I dont know if this would break the script, I've only tested with bots who probably dont run these scripts_
 end
 
 public def OnUpdate() //--Every frame. We should spawn explosions!
@@ -36,5 +36,5 @@ public def OnUpdate() //--Every frame. We should spawn explosions!
         createtext(1.84,"Insurgents Remaining: ", 2, 0, 100, 0) //--Green
         createtext(1.65,"Dead Players: ", 3, 255, 255, 255) //--White
     end
-    --A for loop would be useful here if there was a dictonary or table feature in Skynet. 
+    //--A for loop would be useful here if there was a dictonary or table feature in Skynet. 
 end
