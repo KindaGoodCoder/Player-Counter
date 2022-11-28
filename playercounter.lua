@@ -2,8 +2,6 @@ scps = {5,6,10,11,12,13,14,15,16} --Team roles
 cd = {3,7,0,0,0,0,0,0,0}
 found = {1,2,4,8,9,0,0,0,0}
 
-text = {} --List for playertext
-
 function OnScriptLoaded() --Check if script loaded
     print("PlayerCounter")    
     return -1
@@ -55,6 +53,8 @@ function OnPlayerGetNewRole()
 
     data = createbank(11) --Create data bank. Can be shared between server and client
     for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x-1,v) end --Add each counter to a section of the data bank. (Positions 0,1,2,3 specifically)
+    -- In Lua, to get the number and value in a list, u use a for in loop. ipairs splits each item in the list into its value and index.
+    -- Since Lua starts with 1, we have to subtract one from that number to start from 0
 
     plr_loop(function(plr)
         pokebyte(data, 4, getplayertype(plr)) --The last slot will be for playertype (Less complicated then calculating it). Confirm if spectator or not
