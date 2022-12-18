@@ -30,11 +30,10 @@ public def OnUpdate() //--Every frame. We should spawn explosions!
     width = getmonitorwidth()/45
     height = getmonitorheight() //--Screen size
     
-    if role == 0 then //-- If spectator show text
-        createtext(2.40,"SCPs Remaining: ", 0, 255, 0, 0) //--Red
-        createtext(2.08,"Security Remaining: ", 1, 0, 0, 255) //--Blue
-        createtext(1.84,"Insurgents Remaining: ", 2, 0, 100, 0) //--Green
-        createtext(1.65,"Dead Players: ", 3, 255, 255, 255) //--White
-    end
+    if role != 0 then return//-- If spectator show text
+    createtext(2.40,"SCPs Remaining: ", 0, 255, 0, 0) //--Red
+    createtext(2.08,"Security Remaining: ", 1, 0, 0, 255) //--Blue
+    createtext(1.84,"Insurgents Remaining: ", 2, 0, 100, 0) //--Green
+    createtext(1.65,"Dead Players: ", 3, 255, 255, 255) //--White
     //--A for loop would be useful here if there was a dictonary or table feature in Skynet. 
 end

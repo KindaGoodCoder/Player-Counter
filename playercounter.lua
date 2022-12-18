@@ -53,6 +53,7 @@ function OnPlayerGetNewRole()
 
     data = createbank(11) --Create data bank. Can be shared between server and client
     for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x-1,v) end --Add each counter to a section of the data bank. (Positions 0,1,2,3 specifically)
+    
     -- In Lua, to get the number and value in a list, u use a for in loop. ipairs splits each item in the list into its value and index.
     -- Since Lua starts with 1, we have to subtract one from that number to start from 0
 
