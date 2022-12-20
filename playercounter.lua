@@ -4,7 +4,6 @@ found = {1,2,4,8,9,0,0,0,0}
 
 function OnScriptLoaded() --Check if script loaded
     print("PlayerCounter")
-    print(string.byte("h"))
     return -1
 end
 
