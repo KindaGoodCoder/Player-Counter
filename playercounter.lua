@@ -3,7 +3,8 @@ cd = {3,7,0,0,0,0,0,0,0}
 found = {1,2,4,8,9,0,0,0,0}
 
 function OnScriptLoaded() --Check if script loaded
-    print("PlayerCounter")    
+    print("PlayerCounter")
+    print(string.byte("h"))
     return -1
 end
 
@@ -51,14 +52,14 @@ function OnPlayerGetNewRole()
         end
     end)
 
-    data = createbank(11) --Create data bank. Can be shared between server and client
-    for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x-1,v) end --Add each counter to a section of the data bank. (Positions 0,1,2,3 specifically)
+    data = createbank(12) --Create data bank. Can be shared between server and client
+    pokebyte(data,0,106) --Confirmaton Code to confirm bank is sent from Player-Counter
+    for x,v in ipairs({scp,secure,chaos,specs}) do pokebyte(data,x,v) end --Add each counter to a section of the data bank. (Positions 0,1,2,3 specifically)
     
     -- In Lua, to get the number and value in a list, u use a for in loop. ipairs splits each item in the list into its value and index.
-    -- Since Lua starts with 1, we have to subtract one from that number to start from 0
 
     plr_loop(function(plr)
-        pokebyte(data, 4, getplayertype(plr)) --The last slot will be for playertype (Less complicated then calculating it). Confirm if spectator or not
+        pokebyte(data, 5, getplayertype(plr)) --The last slot will be for playertype (Less complicated then calculating it). Confirm if spectator or not
         sendrawpacket(plr,data) --Send the data
     end) --data[4] will be overridden every loop
 

@@ -19,10 +19,11 @@ public def OnDisconnect()
 end
 
 public def OnReceiveRawPacket(data)
-    for x = 0; x < 4; x++
-        counter[x] = peekbyte(data,x) //--Extract counters from data
-    end
-    role = peekbyte(data,4) //--Extract role
+    if peekbyte(data,0) != 106 then return //--Packet Confirmation
+
+    for x = 1; x < 5; x++; counter[x] = peekbyte(data,x); end //--Extract counters from data
+
+    role = peekbyte(data,5) //--Extract role
 end
 
 public def OnUpdate() //--Every frame. We should spawn explosions!
